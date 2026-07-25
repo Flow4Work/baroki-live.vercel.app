@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="업무와 일상에서 바로 쓰는 Windows, Mac 단축키를 검색하고 키보드 위치로 확인하는 바로키" />
+  <title>바로키 | 컴퓨터 단축키</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#shortcutLibrary">단축키 목록으로 바로가기</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="바로키 처음으로">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7 7.5h7.2a3.8 3.8 0 0 1 0 7.6H10V19H7V7.5Zm3 3v1.6h4.1a.8.8 0 1 0 0-1.6H10Z"/></svg>
+        </span>
+        <span class="brand-copy"><strong>바로키</strong><small>컴퓨터 단축키</small></span>
+      </a>
+
+      <div class="header-search" role="search">
+        <span data-icon="search" aria-hidden="true"></span>
+        <input id="mainSearch" type="search" autocomplete="off" placeholder="단축키 검색" aria-label="단축키 검색" />
+        <button id="clearSearch" type="button" hidden>지우기</button>
+      </div>
+
+      <div class="header-controls">
+        <div class="segmented-control" role="group" aria-label="컴퓨터 종류 선택">
+          <button class="platform-button is-active" type="button" data-platform="windows" aria-pressed="true">Windows</button>
+          <button class="platform-button" type="button" data-platform="mac" aria-pressed="false">Mac</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="app-main">
+    <section id="savedSection" class="saved-section" aria-labelledby="savedTitle" hidden>
+      <div class="saved-heading-row">
+        <div>
+          <h2 id="savedTitle">저장한 단축키</h2>
+          <p>자주 쓰는 단축키를 가장 먼저 확인할 수 있어요.</p>
+        </div>
+        <span id="savedCount" class="saved-count" aria-live="polite"></span>
+      </div>
+      <div id="savedGrid" class="featured-grid saved-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="featuredSection" aria-labelledby="featuredTitle">
+      <div class="section-heading">
+        <h1 id="featuredTitle">지금 가장 많이 쓰는 단축키</h1>
+        <p>업무와 일상에서 바로 써먹을 수 있는 단축키만 모았습니다.</p>
+      </div>
+      <div id="categoryFilter" class="category-filter" role="group" aria-label="단축키 분류">
+        <button class="category-chip is-active" type="button" data-category="all" aria-pressed="true">#전체</button>
+        <button class="category-chip" type="button" data-category="basic" aria-pressed="false">#기본</button>
+        <button class="category-chip" type="button" data-category="browser" aria-pressed="false">#인터넷</button>
+        <button class="category-chip" type="button" data-category="writing" aria-pressed="false">#글쓰기</button>
+        <button class="category-chip" type="button" data-category="file" aria-pressed="false">#파일</button>
+        <button class="category-chip" type="button" data-category="screen" aria-pressed="false">#화면</button>
+      </div>
+      <div id="featuredGrid" class="featured-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="shortcutLibrary" class="library-section" aria-labelledby="libraryTitle">
+      <div class="library-heading-row">
+        <div>
+          <h2 id="libraryTitle">알아두면 일이 빨라지는 단축키</h2>
+          <p>필요한 순간 바로 찾아서 써보세요.</p>
+        </div>
+        <span id="resultCount" class="result-count" aria-live="polite"></span>
+      </div>
+
+      <div id="shortcutGrid" class="shortcut-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state" hidden>
+        <span data-icon="search-x" aria-hidden="true"></span>
+        <h3>찾는 단축키가 없어요</h3>
+        <p>다른 검색어나 분류를 선택해 보세요.</p>
+        <button id="resetSearch" class="primary-button" type="button">전체 단축키 보기</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div><strong>바로키</strong></div>
+      <button id="scrollTop" type="button">맨 위로</button>
+    </div>
+  </footer>
+
+  <div id="largeModal" class="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="largeModalTitle" aria-describedby="largeModalDescription">
+      <button id="closeLarge" class="modal-close" type="button" aria-label="크게 보기 닫기"><span data-icon="x" aria-hidden="true"></span></button>
+      <div class="modal-head">
+        <div id="largeModalIcon"></div>
+        <div>
+          <p class="modal-eyebrow"><span data-icon="maximize-2" aria-hidden="true"></span>크게 보기</p>
+          <h2 id="largeModalTitle"></h2>
+          <p id="largeModalDescription" class="modal-description"></p>
+        </div>
+      </div>
+      <div class="large-view-content">
+        <h3 id="largeViewFunction"></h3>
+        <p id="largeViewDescription"></p>
+        <div id="largeModalKeys" class="modal-shortcut-keys"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="keyboardModal" class="modal-backdrop" hidden>
+    <section class="modal keyboard-modal" role="dialog" aria-modal="true" aria-labelledby="keyboardModalTitle" aria-describedby="keyboardModalDescription">
+      <button id="closeKeyboard" class="modal-close" type="button" aria-label="키보드 화면 닫기"><span data-icon="x" aria-hidden="true"></span></button>
+      <div class="modal-head">
+        <div id="keyboardModalIcon"></div>
+        <div>
+          <p class="modal-eyebrow"><span data-icon="keyboard" aria-hidden="true"></span>키보드로 보기</p>
+          <h2 id="keyboardModalTitle"></h2>
+          <p id="keyboardModalDescription" class="modal-description"></p>
+        </div>
+      </div>
+      <div id="keyboardModalKeys" class="modal-shortcut-keys"></div>
+      <div class="keyboard-stage" tabindex="0" aria-label="단축키 위치가 강조된 키보드">
+        <div id="keyboardVisual" class="keyboard-visual"></div>
+      </div>
+      <p class="keyboard-note">강조된 키를 함께 누르면 됩니다.</p>
+    </section>
+  </div>
+
+  <div id="saveToast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
