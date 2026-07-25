@@ -7,6 +7,25 @@
   <meta name="description" content="업무와 일상에서 바로 쓰는 Windows, Mac 단축키를 검색하고 키보드 위치로 확인하는 바로키" />
   <title>바로키 | 컴퓨터 단축키</title>
   <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      overflow: hidden;
+      border-radius: 13px;
+      background: #fff;
+      box-shadow: none;
+    }
+    .brand-mark img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    @media (max-width: 560px) {
+      .brand-mark { width: 42px; height: 42px; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#shortcutLibrary">단축키 목록으로 바로가기</a>
@@ -15,7 +34,7 @@
     <div class="header-inner">
       <a class="brand" href="#top" aria-label="바로키 처음으로">
         <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M7 7.5h7.2a3.8 3.8 0 0 1 0 7.6H10V19H7V7.5Zm3 3v1.6h4.1a.8.8 0 1 0 0-1.6H10Z"/></svg>
+          <img src="data:image/png;base64,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" alt="" />
         </span>
         <span class="brand-copy"><strong>바로키</strong><small>컴퓨터 단축키</small></span>
       </a>
@@ -47,7 +66,7 @@
       <div id="savedGrid" class="featured-grid saved-grid" aria-live="polite"></div>
     </section>
 
-    <section id="featuredSection" aria-labelledby="featuredTitle">
+    <section class="catalog-heading" aria-labelledby="featuredTitle">
       <div class="section-heading">
         <h1 id="featuredTitle">지금 가장 많이 쓰는 단축키</h1>
         <p>업무와 일상에서 바로 써먹을 수 있는 단축키만 모았습니다.</p>
@@ -60,6 +79,9 @@
         <button class="category-chip" type="button" data-category="file" aria-pressed="false">#파일</button>
         <button class="category-chip" type="button" data-category="screen" aria-pressed="false">#화면</button>
       </div>
+    </section>
+
+    <section id="featuredSection" aria-label="인기 단축키">
       <div id="featuredGrid" class="featured-grid" aria-live="polite"></div>
     </section>
 
@@ -95,7 +117,6 @@
       <div class="modal-head">
         <div id="largeModalIcon"></div>
         <div>
-          <p class="modal-eyebrow"><span data-icon="maximize-2" aria-hidden="true"></span>크게 보기</p>
           <h2 id="largeModalTitle"></h2>
           <p id="largeModalDescription" class="modal-description"></p>
         </div>
