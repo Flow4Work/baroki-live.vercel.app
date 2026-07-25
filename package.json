@@ -1,0 +1,12 @@
+{
+  "name": "baroki-live",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node scripts/validate.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/validate.mjs",
+    "test:e2e": "python3 scripts/e2e.py"
+  }
+}
